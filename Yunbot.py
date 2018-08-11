@@ -32,7 +32,7 @@ def create_yunbot():
 
             
             person = None
-            sentences = re.split(r'\.,!\?:;', message.content)
+            sentences = re.split(r'[\.,!\?:;]', message.content)
 
             for sentence in sentences:
                 words = sentence.split(" ")
@@ -47,7 +47,6 @@ def create_yunbot():
                     person = " ".join(words[(imIdx+1):])
 
             if person != None:
-                person = " ".join(words[(imIdx+1):])
                 yun = 'Hi ' + person + ', im yun!'
 
                 if not message.author.server_permissions.mention_everyone:
