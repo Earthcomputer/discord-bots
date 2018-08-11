@@ -19,6 +19,11 @@ def create_yunbot():
     @client.async_event
     async def on_message(message):
         if not message.author.bot:
+
+            read_messages_perm = message.channel.overwrites_for(message.server.default_role).read_messages
+            if not (read_messages_perm == None or read_messages_perm == True):
+                return
+            
             if message.author.id == '310231043762290700': # Acheron
                 if '\u2764' in message.content:
                     for emoji in ['\U0001F494', '\U0001F498', '\U0001F499', '\U0001F49A', '\U0001F49C', '\U0001F49D', '\U0001F49B', '\U0001F5A4', '\U0001F60D', '\U0001F618']:
