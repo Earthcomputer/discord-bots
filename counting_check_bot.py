@@ -47,6 +47,7 @@ def create_counting_check_bot():
 
     @client.event
     async def on_ready():
+        print("COUNTING CHECK BOT")
         await client.change_presence(game=discord.Game(name="count/help",type=2),status=discord.Status.dnd,afk=False)
         for guild in config:
             for channel_id in config[guild]["channels"]:
