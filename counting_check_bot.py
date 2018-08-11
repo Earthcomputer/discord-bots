@@ -31,7 +31,7 @@ def create_counting_check_bot():
     def save_config():
         string = json.dumps(config, indent=2)
         if not os.path.exists("config"):
-            os.path.makedirs("config")
+            os.makedirs("config")
         with open("config/counting_check_bot.json", "w") as f:
             f.write(string)
 
