@@ -1,6 +1,7 @@
 import discord
 
 import asyncio
+import re
 
 def create_yunbot():
     client = discord.Client()
@@ -28,16 +29,24 @@ def create_yunbot():
                 if '\u2764' in message.content:
                     for emoji in ['\U0001F494', '\U0001F498', '\U0001F499', '\U0001F49A', '\U0001F49C', '\U0001F49D', '\U0001F49B', '\U0001F5A4', '\U0001F60D', '\U0001F618']:
                         await client.add_reaction(message, emoji)
-            words = message.content.split(" ")
-            imIdx = -1
-            for i, word in enumerate(words):
-                word = word.lower()
-                if (word in ['im', 'i\'m', 'i’m', 'i‘m', 'i`m'] or (i != 0 and word == 'am' and words[i - 1].lower() == 'i')):
-                    if i != len(words) - 1:
-                        imIdx = i
-                        break
 
-            if imIdx != -1:
+            
+            person = None
+            sentences = re.split(r'\.,!\?:;', message.content)
+
+            for sentence in sentences:
+                words = sentence.split(" ")
+                imIdx = -1
+                for i, word in enumerate(words):
+                    word = word.lower()
+                    if (word in ['im', 'i\'m', 'i’m', 'i‘m', 'i`m'] or (i != 0 and word == 'am' and words[i - 1].lower() == 'i')):
+                        if i != len(words) - 1:
+                            imIdx = i
+
+                if imIdx != -1:
+                    person = " ".join(words[(imIdx+1):])
+
+            if person != None:
                 person = " ".join(words[(imIdx+1):])
                 yun = 'Hi ' + person + ', im yun!'
 
