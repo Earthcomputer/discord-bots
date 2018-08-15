@@ -159,7 +159,7 @@ def create_counting_check_bot():
         if content.startswith("count/help"):
             print("Printing help")
             h = "```\ncount/addchannel #counting_channel\ncount/removechannel #counting_channel\ncount/whereami\ncount/deletelast\n```"
-            await client.send_message(message.channel, h + DELETE_MSSAGE)
+            await client.send_message(message.channel, h + DELETE_MESSAGE)
         elif content.startswith("count/addchannel "):
             if not check_permission(message.author):
                 await client.send_message(message.channel, "No permission" + DELETE_MESSAGE)
