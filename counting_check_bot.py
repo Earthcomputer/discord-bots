@@ -7,6 +7,8 @@ import json
 import datetime
 import os
 
+import bot_utils
+
 THINKING_EMOJI = "\U0001F914"
 NUMBER_REGEX = r'-?\d+(?![>\d])'
 DELETE_MESSAGE = "\n(`count/deletelast` will delete this message)"
@@ -44,6 +46,10 @@ def create_counting_check_bot():
             return user.server_permissions.manage_server
         else:
             return True
+
+    @client.event
+    async def on_error(event, *args, **kwargs):
+        await bot_utils.on_error(client, event, args, kwargs)
 
     @client.event
     async def on_ready():

@@ -1,4 +1,5 @@
 import discord
+import bot_utils
 
 import asyncio
 import re
@@ -10,12 +11,17 @@ def create_yunbot():
         client.access_token = f.read()
 
     @client.async_event
+    async def on_error(event, *args, **kwargs):
+        await bot_utils.on_error(client, event, args, kwargs)
+    
+    @client.async_event
     async def on_ready():
         print("YUNBOT")
         print('Logged in as')
         print(client.user.name)
         print(client.user.id)
         print('------')
+        print("Testing exception: " + (1 / 0))
 
     @client.async_event
     async def on_message(message):
