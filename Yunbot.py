@@ -21,7 +21,6 @@ def create_yunbot():
         print(client.user.name)
         print(client.user.id)
         print('------')
-        print("Testing exception: " + (1 / 0))
 
     @client.async_event
     async def on_message(message):
