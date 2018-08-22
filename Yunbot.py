@@ -52,7 +52,10 @@ def create_yunbot():
                     person = " ".join(words[(imIdx+1):])
 
             if person != None:
-                yun = 'Hi ' + person + ', im yun!'
+                if person.lower() == 'yun':
+                    yun = 'No, im yun, you\'re ' + message.author.name + '!'
+                else:
+                    yun = 'Hi ' + person + ', im yun!'
 
                 if not message.author.server_permissions.mention_everyone:
                     if "@everyone" in yun:
