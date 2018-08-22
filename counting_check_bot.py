@@ -142,7 +142,7 @@ def create_counting_check_bot():
                 await client.wait_until_ready()
                 to_delete = await client.get_message(msg_before.channel, to_delete)
                 await client.delete_message(to_delete)
-                await client.remove_reaction(msg_after, THINKING_EMOJI, msg_before.server.me)
+                await client.remove_reaction(msg_after, THINKING_EMOJI, client.user)
                 del conf["listened_messages"][msg_before.id]
                 save_config()
         else:
