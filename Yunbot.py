@@ -43,6 +43,7 @@ def create_yunbot():
             sentences = re.split(r'[\.,!\?:;]', message.content)
 
             for sentence in sentences:
+                sentence.strip()
                 words = sentence.split(" ")
                 imIdx = -1
                 for i, word in enumerate(words):
