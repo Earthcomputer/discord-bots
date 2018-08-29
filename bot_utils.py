@@ -4,7 +4,7 @@ import sys
 async def on_error(bot, event, *args, **kwargs):
     ex_type, ex_value, ex_traceback = sys.exc_info()
     try:
-        channel = bot.get_channel('477258067927629824')
+        channel = bot.get_channel('480718631710228480')
         if channel == None:
             raise Exception
         await bot.send_message(channel, ("<@377517798768902145> blame %s for triggering: Exception occurred while processing " + event )%(args[0].author if hasattr(args[0], "author") else "<@377517798768902145>"))
