@@ -3,9 +3,12 @@ import bot_utils
 
 import asyncio
 import re
+import time
 
 def create_yunbot():
     client = discord.Client()
+
+    message_timestamps = {}
 
     with open("access_tokens/yunbot.txt") as f:
         client.access_token = f.read()
@@ -62,6 +65,16 @@ def create_yunbot():
                         return
                     elif "@here" in yun:
                         return
+
+                if message.channel.id not in message_timestamps:
+                    message_timestamps[message.channel.id] = []
+                while len(message_timestamps[message.channel.id]) >= 5:
+                    now = time.process_time()
+                    if now - message_timestamps[message.channel.id][0] > 300:
+                        del message_timestamps[message.channel.id][0]
+                if len(message_timestamps[message.channel.id]) >= 5:
+                    return
+                message_timestamps[message.channel.id].append(time.process_time())
                 
                 await client.send_message(message.channel, yun)
 
