@@ -1,5 +1,6 @@
 import asyncio
 import logging
+import time
 
 import counting_check_bot
 import Yunbot
@@ -21,7 +22,14 @@ bots = [
 loop = asyncio.get_event_loop()
 
 try:
-    loop.run_until_complete(asyncio.gather(*[bot.start(bot.access_token) for bot in bots]))
+    while True:
+        try:
+            loop.run_until_complete(asyncio.gather(*[bot.start(bot.access_token) for bot in bots]))
+        except KeyboardInterrupt:
+            raise
+        except:
+            logger.info("Exception occurred, assuming disconnect, waiting 1 minute...")
+            time.sleep(60)
 except KeyboardInterrupt:
     loop.run_until_complete(asyncio.gather(*[bot.logout() for bot in bots]))
     pending = asyncio.Task.all_tasks()
