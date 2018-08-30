@@ -76,6 +76,8 @@ def create_yunbot():
                     now = time.process_time()
                     if now - message_timestamps[message.channel.id][0] > 300:
                         del message_timestamps[message.channel.id][0]
+                    else:
+                        break
                 if len(message_timestamps[message.channel.id]) >= 5:
                     return
                 message_timestamps[message.channel.id].append(time.process_time())
