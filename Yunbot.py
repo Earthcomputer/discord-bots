@@ -29,7 +29,10 @@ def create_yunbot():
     async def on_message(message):
         if not message.author.bot:
 
-            read_messages_perm = message.channel.permissions_for(message.server.default_role if message.server else client.user).read_messages
+            if isinstance(message.channel, discord.PrivateChannel):
+                read_messages_perm = True
+            else:
+                read_messages_perm = message.channel.overwrites_for(message.server.default_role).read_messages
             if not (read_messages_perm == None or read_messages_perm == True):
                 return
             
