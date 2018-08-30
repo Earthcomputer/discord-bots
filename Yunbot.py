@@ -64,7 +64,7 @@ def create_yunbot():
                 else:
                     yun = 'Hi ' + person + ', im yun!'
 
-                if not message.author.server_permissions.mention_everyone:
+                if hasattr(message.author, "server_permissions") and not message.author.server_permissions.mention_everyone:
                     if "@everyone" in yun:
                         return
                     elif "@here" in yun:
