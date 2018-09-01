@@ -77,14 +77,14 @@ def create_yunbot():
                 if message.channel.id not in message_timestamps:
                     message_timestamps[message.channel.id] = []
                 while len(message_timestamps[message.channel.id]) >= 5:
-                    now = time.process_time()
+                    now = time.time()
                     if now - message_timestamps[message.channel.id][0] > 300:
                         del message_timestamps[message.channel.id][0]
                     else:
                         break
                 if len(message_timestamps[message.channel.id]) >= 5:
                     return
-                message_timestamps[message.channel.id].append(time.process_time())
+                message_timestamps[message.channel.id].append(time.time())
                 
                 await client.send_message(message.channel, yun)
 
