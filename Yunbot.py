@@ -55,7 +55,7 @@ def create_yunbot():
                     if (word in ['im', 'i\'m', 'i’m', 'i‘m', 'i`m'] or (i != 0 and word == 'am' and words[i - 1].lower() == 'i')):
                         if i != len(words) - 1:
                             imIdx = i
-                    elif (word in ['mod', 'mods']):
+                    elif (word in ['mod', 'mods', 'modded', 'modding']):
                         yun = 'Try vanilla'
 
                 if imIdx != -1:
