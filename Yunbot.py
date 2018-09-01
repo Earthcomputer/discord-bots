@@ -43,6 +43,7 @@ def create_yunbot():
 
             
             person = None
+            yun = None
             sentences = re.split(r'[\.,!\?:;]', message.content)
 
             for sentence in sentences:
@@ -54,6 +55,8 @@ def create_yunbot():
                     if (word in ['im', 'i\'m', 'i’m', 'i‘m', 'i`m'] or (i != 0 and word == 'am' and words[i - 1].lower() == 'i')):
                         if i != len(words) - 1:
                             imIdx = i
+                    elif (word in ['mod', 'mods']):
+                        yun = 'Try vanilla'
 
                 if imIdx != -1:
                     person = " ".join(words[(imIdx+1):])
@@ -63,7 +66,8 @@ def create_yunbot():
                     yun = 'No, im yun, you\'re ' + message.author.name + '!'
                 else:
                     yun = 'Hi ' + person + ', im yun!'
-
+            
+            if yun != None:
                 if hasattr(message.author, "server_permissions") and not message.author.server_permissions.mention_everyone:
                     if "@everyone" in yun:
                         return
