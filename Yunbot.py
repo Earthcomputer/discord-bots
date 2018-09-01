@@ -43,6 +43,7 @@ def create_yunbot():
 
             
             person = None
+            yun = None
             sentences = re.split(r'[\.,!\?:;]', message.content)
 
             for sentence in sentences:
@@ -65,7 +66,8 @@ def create_yunbot():
                     yun = 'No, im yun, you\'re ' + message.author.name + '!'
                 else:
                     yun = 'Hi ' + person + ', im yun!'
-
+            
+            if yun != None:
                 if hasattr(message.author, "server_permissions") and not message.author.server_permissions.mention_everyone:
                     if "@everyone" in yun:
                         return
