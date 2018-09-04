@@ -20,6 +20,7 @@ def create_yunbot():
     @client.async_event
     async def on_ready():
         print("YUNBOT")
+        await client.change_presence(game=discord.Game(name="Fortnite"),status=discord.Status.online,afk=False)
         print('Logged in as')
         print(client.user.name)
         print(client.user.id)
