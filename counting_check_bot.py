@@ -241,9 +241,10 @@ def create_counting_check_bot():
             if found_num:
                 if "lastauthor" in conf and message.author.id == conf["lastauthor"]:
                     await client.send_message(message.channel, "<@" + message.author.id + "> no self-counting" + DELETE_MESSAGE)
+                else:
+                    conf["lastnum"] = conf["lastnum"] + 1
                 
                 conf["lastmsg"] = message.timestamp.replace(tzinfo=datetime.timezone.utc).timestamp()
-                conf["lastnum"] = conf["lastnum"] + 1
                 conf["lastauthor"] = message.author.id
                 if not found:
                     if "listened_messages" not in conf:
